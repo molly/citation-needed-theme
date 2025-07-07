@@ -1,7 +1,7 @@
 <div class="gh-card gh-plan-card {{plan}}">
   <h3>{{plan}}</h3>
   <div class="gh-signup-amount-interval">
-  {{#match plan "!=" "none"}}
+  {{#match plan "!=" "free"}}
     {{#match plan "monthly"}}
       <div class="gh-signup-default">
         <span class="gh-signup-amount">$10</span><span class="gh-signup-interval">/month</span>
@@ -29,7 +29,7 @@
   </div>
   <ul class="gh-signup-perks">
     <li>Receive all posts</li>
-    {{#match plan "!=" "none"}}
+    {{#match plan "!=" "free"}}
     <li>Leave comments</li>
     {{/match}}
     {{#match plan "founding"}}
@@ -47,7 +47,7 @@
     {{#match plan "founding"}}
       <a class="gh-signup-choose gh-button disabled" id="choose-founding" href="javascript:" data-portal="signup/658cc2929458ad1f4271e4c5/yearly">Choose <div class="gh-signup-loader hidden">{{> "icons/loader"}}</div></a>
     {{/match}}
-    {{#match plan "none"}}
+    {{#match plan "free"}}
       <button class="gh-signup-choose gh-button disabled" type="submit" disabled>Choose <div class="gh-signup-loader hidden">{{> "icons/loader"}}</div></button>
     {{/match}}
   </div>
