@@ -2896,6 +2896,44 @@ figcaption a {
   padding-left: 20px;
 }
 
+/* Blockquotes styled like message bubbles */
+.gh-content > blockquote.kg-conversation {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-family: var(--font-sans);
+}
+.gh-content > blockquote.kg-conversation .message-bubble-from,
+.gh-content > blockquote.kg-conversation .message-bubble-to {
+  max-width: 70%;
+  display: inline-flex;
+  flex-direction: column;
+}
+.gh-content > blockquote.kg-conversation .message-bubble-to {
+  align-self: flex-start;
+}
+.gh-content > blockquote.kg-conversation .message-bubble-from {
+  align-self: flex-end;
+}
+.gh-content > blockquote.kg-conversation .message-contents {
+  padding: 10px;
+  border-radius: 5px;
+}
+.gh-content > blockquote.kg-conversation .message-bubble-to .message-contents {
+  background-color: #d8d8d8;
+}
+.gh-content > blockquote.kg-conversation .message-bubble-from .message-contents {
+  background-color: #218aff;
+  color: white;
+}
+.gh-content > blockquote.kg-conversation .message-author {
+  font-size: 0.8em;
+  color: #ccc;
+}
+.gh-content > blockquote.kg-conversation .message-bubble-from .message-author {
+  text-align: right;
+}
+
 /* 17. Comments
 /* ---------------------------------------------------------- */
 
@@ -4338,8 +4376,20 @@ label[for="light"] svg {
   color: var(--color-primary-text);
 }
 
+.image-dark-only {
+  display: none;
+}
+
 html[data-theme="dark"] .gh-content hr {
   background-image: url(/content/images/fancy-divider-dark-mode.png);
+}
+
+html[data-theme="dark"] .image-light-only {
+  display: none;
+}
+
+html[data-theme="dark"] .image-dark-only {
+  display: block;
 }
 
 /* 27. Post-specific fixes
