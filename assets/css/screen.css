@@ -2561,6 +2561,7 @@ unless a heading is the very first element in the post content */
   padding-right: 0;
 }
 
+/* Mobile tables */
 @media (max-width: 767px) {
   .gh-content .gh-table table thead {
     position: absolute;
@@ -2577,7 +2578,8 @@ unless a heading is the very first element in the post content */
   .gh-content .gh-table table,
   .gh-content .gh-table table tbody,
   .gh-content .gh-table table tr,
-  .gh-content .gh-table table td {
+  .gh-content .gh-table table td,
+  .gh-content .gh-table table tbody th {
     display: block;
     width: 100%;
   }
@@ -2591,12 +2593,14 @@ unless a heading is the very first element in the post content */
     border-bottom: 1px solid var(--color-border);
   }
 
-  .gh-content .gh-table table td {
+  .gh-content .gh-table table td,
+  .gh-content .gh-table table tbody th {
     padding: 2px 0;
     border-bottom: none;
   }
 
-  .gh-content .gh-table table td:first-child {
+  .gh-content .gh-table table td:first-child,
+  .gh-content .gh-table table tbody th:first-child {
     font-weight: 700;
     padding-bottom: 4px;
   }
