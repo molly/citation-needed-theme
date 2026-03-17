@@ -99,12 +99,14 @@ production stylesheet in assets/built/screen.css
   --code-border-color: var(--color-mid-gray);
 
   /* Fonts */
-  --font-brand: "Barlow Condensed", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
-    "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  --font-brand:
+    "Barlow Condensed", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
+    "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   --font-serif: "Source Serif 4", Georgia, Times, serif;
   --font-serif-alt: Georgia, Times, serif;
-  --font-sans: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
-    "Droid Sans", "Helvetica Neue", sans-serif;
+  --font-sans:
+    "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
   --font-mono: "Source Code Pro", Menlo, Consolas, Monaco, "Liberation Mono", "Lucida Console", monospace;
 
   /* Sizing */
@@ -1054,7 +1056,9 @@ Search                         LOGO                    Login Subscribe
 
   .is-open#gh-navigation .nav li {
     opacity: 1;
-    transition: transform 0.2s, opacity 0.2s;
+    transition:
+      transform 0.2s,
+      opacity 0.2s;
     transform: translateY(0);
   }
 
@@ -1072,7 +1076,9 @@ Search                         LOGO                    Login Subscribe
 
   .is-open#gh-navigation :is(a.gh-button, a[data-portal="signin"], #mobile-site-settings-panel) {
     opacity: 1;
-    transition: transform 0.4s, opacity 0.4s;
+    transition:
+      transform 0.4s,
+      opacity 0.4s;
     transition-delay: 0.2s;
     transform: translateY(0);
   }
@@ -2454,8 +2460,7 @@ unless a heading is the very first element in the post content */
   letter-spacing: -0.017em;
 }
 
-.gh-content a[href^="https://en.wikipedia.org/"]::after
-{
+.gh-content a[href^="https://en.wikipedia.org/"]::after {
   background-image: url("../images/wikipedia.svg");
   background-repeat: no-repeat;
   background-size: 0.8em;
@@ -2464,8 +2469,7 @@ unless a heading is the very first element in the post content */
   background-position: right 0 bottom 40%;
 }
 
-.gh-content a[href^="https://www.followthecrypto.org/"]::after
-{
+.gh-content a:not(.kg-bookmark-container)[href^="https://www.followthecrypto.org/"]::after {
   background-image: url("../images/follow-the-crypto.svg");
   background-repeat: no-repeat;
   background-size: 0.6em;
@@ -2517,6 +2521,11 @@ unless a heading is the very first element in the post content */
   background-position: center;
 }
 
+.gh-content .gh-table {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
 .gh-content .gh-table table {
   width: 100%;
   font-family: var(--font-sans);
@@ -2550,6 +2559,55 @@ unless a heading is the very first element in the post content */
 
 .gh-content .gh-table table :is(th, td):last-child {
   padding-right: 0;
+}
+
+@media (max-width: 767px) {
+  .gh-content .gh-table table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .gh-content .gh-table table,
+  .gh-content .gh-table table tbody,
+  .gh-content .gh-table table tr,
+  .gh-content .gh-table table td {
+    display: block;
+    width: 100%;
+  }
+
+  .gh-content .gh-table table tbody tr {
+    border-top: 1px solid var(--color-border);
+    padding: 10px 0;
+  }
+
+  .gh-content .gh-table table tbody tr:last-child {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .gh-content .gh-table table td {
+    padding: 2px 0;
+    border-bottom: none;
+  }
+
+  .gh-content .gh-table table td:first-child {
+    font-weight: 700;
+    padding-bottom: 4px;
+  }
+
+  /* Show data-label as a prefix when present (HTML card tables) */
+  .gh-content .gh-table table td[data-label]::before {
+    content: attr(data-label) ": ";
+    font-style: italic;
+    font-weight: 400;
+    color: var(--color-secondary-text);
+  }
 }
 
 .gh-content pre {
@@ -2610,6 +2668,12 @@ unless a heading is the very first element in the post content */
 
 .voiceover-caption a {
   color: var(--color-secondary-text);
+}
+
+.redacted-text {
+  background-color: var(--color-black);
+  color: var(--color-black);
+  padding: 0 0.1em;
 }
 
 /* 16. Cards
@@ -2740,6 +2804,7 @@ blockquote.kg-blockquote-alt cite {
   position: absolute;
   right: 2.5em;
   bottom: -2em;
+  line-height: 1.2em;
 }
 
 @media (max-width: 767px) {
@@ -2747,6 +2812,10 @@ blockquote.kg-blockquote-alt cite {
     font-size: 1em;
     padding-left: 1.25em;
     padding-right: 1.25em;
+  }
+
+  blockquote.kg-blockquote-alt.long-cite {
+    padding-bottom: 1em;
   }
 }
 
@@ -2897,41 +2966,57 @@ figcaption a {
 }
 
 /* Blockquotes styled like message bubbles */
-.gh-content > blockquote.kg-conversation {
+.has-serif-body:not([class*=" gh-font-body"]):not([class^="gh-font-body"])
+  .gh-content
+  > figure.kg-conversation
+  blockquote.kg-conversation {
+  font-family: var(--font-sans);
+}
+.gh-content > figure.kg-conversation blockquote.kg-conversation {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  font-family: var(--font-sans);
 }
-.gh-content > blockquote.kg-conversation .message-bubble-from,
-.gh-content > blockquote.kg-conversation .message-bubble-to {
+.gh-content > figure.kg-conversation blockquote.kg-conversation .message-bubble-from,
+.gh-content > figure.kg-conversation blockquote.kg-conversation .message-bubble-to {
   max-width: 70%;
   display: inline-flex;
   flex-direction: column;
 }
-.gh-content > blockquote.kg-conversation .message-bubble-to {
+.gh-content > figure.kg-conversation blockquote.kg-conversation .message-bubble-to {
   align-self: flex-start;
 }
-.gh-content > blockquote.kg-conversation .message-bubble-from {
+.gh-content > figure.kg-conversation blockquote.kg-conversation .message-bubble-from {
   align-self: flex-end;
 }
-.gh-content > blockquote.kg-conversation .message-contents {
+.gh-content > figure.kg-conversation blockquote.kg-conversation .message-contents {
   padding: 10px;
   border-radius: 5px;
 }
-.gh-content > blockquote.kg-conversation .message-bubble-to .message-contents {
+.gh-content > figure.kg-conversation blockquote.kg-conversation .message-contents + .message-contents {
+  margin-top: 0.5em;
+}
+.gh-content > figure.kg-conversation blockquote.kg-conversation .message-bubble-to .message-contents {
   background-color: #d8d8d8;
+  color: var(--color-darker-gray);
 }
-.gh-content > blockquote.kg-conversation .message-bubble-from .message-contents {
+.gh-content > figure.kg-conversation blockquote.kg-conversation .message-bubble-from .message-contents {
   background-color: #218aff;
-  color: white;
+  color: var(--color-white);
 }
-.gh-content > blockquote.kg-conversation .message-author {
-  font-size: 0.8em;
-  color: #ccc;
+.gh-content > figure.kg-conversation blockquote.kg-conversation .message-author {
+  font-size: 0.7em;
+  color: #8d8d8d;
+  font-weight: bold;
 }
-.gh-content > blockquote.kg-conversation .message-bubble-from .message-author {
+.gh-content > figure.kg-conversation blockquote.kg-conversation .message-bubble-from .message-author {
   text-align: right;
+}
+@media (max-width: 576px) {
+  .gh-content > figure.kg-conversation blockquote.kg-conversation .message-bubble-from,
+  .gh-content > figure.kg-conversation blockquote.kg-conversation .message-bubble-to {
+    max-width: 90%;
+  }
 }
 
 /* 17. Comments
@@ -3996,7 +4081,7 @@ button.button-reset {
 }
 
 .gh-signup-alternatives {
-  margin-top: 10px;
+  margin: 10px 0;
   text-align: center;
   font-size: 0.9em;
 }
